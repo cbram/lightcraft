@@ -271,7 +271,14 @@ pub(crate) fn open_session(in_memory: bool, launch: &Launch, seed_demo: bool) ->
 /// make a new, empty one in its place, e.g. on an unmounted drive's path (issue #3239).
 fn open_library_session(in_memory: bool, dir: Option<std::path::PathBuf>, remembered: bool, seed_demo: bool) -> (Session, Option<LibraryProblem>) {
     if in_memory {
-        return (if seed_demo { Session::with_demo() } else { Session::new() }.with_fs().with_default_denoise_models().with_default_map_cache().with_system_clock(), None);
+        return (
+            if seed_demo { Session::with_demo() } else { Session::new() }
+                .with_fs()
+                .with_default_denoise_models()
+                .with_default_map_cache()
+                .with_system_clock(),
+            None,
+        );
     }
     let unopened = || Session::new().with_fs().with_default_denoise_models().with_default_map_cache().with_system_clock();
     let Some(dir) = dir else {
