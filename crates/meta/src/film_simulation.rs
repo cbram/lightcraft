@@ -1,7 +1,9 @@
 //! The film simulation a Fujifilm camera recorded in its maker note (`FUJIFILM` header, little-endian IFD, offsets
 //! relative to the note): colour looks in FilmMode (0x1401), black-and-white ones in Saturation (0x1003), which
-//! then takes FilmMode's place. Tag identities and value meanings come from the public ExifTool FujiFilm tag table;
-//! the names are the ones the cameras' menus show. Unknown codes give no name rather than a guess.
+//! then takes FilmMode's place. Tag identities and value meanings come from the public ExifTool FujiFilm tag table
+//! (<https://exiftool.org/TagNames/FujiFilm.html>, data only, no code); the names are the ones the cameras' menus
+//! show. Unknown codes give no name rather than a guess. Bounds and byte order are handled by the shared
+//! `lightcraft_tiff::makernote` parser.
 
 use lightcraft_tiff::{ByteOrder, Ifd, makernote, tags as t};
 
